@@ -17,12 +17,16 @@
     ],
     "require": {
         "php": ">=8.1.10",
-        "symfony/var-dumper": "^6.4",
-        "facebook/php-business-sdk": "^19.0"
+        "facebook/php-business-sdk": "^19.0",
+        "illuminate/support": "^10.48"
     },
     "autoload": {
         "psr-4": {
             "Medboubazine\\FacebookPixel\\": "src/"
         }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.4",
+        "spatie/ignition": "^1.14"
     }
 }
