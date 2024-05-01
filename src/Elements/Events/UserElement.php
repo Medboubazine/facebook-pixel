@@ -2,10 +2,10 @@
 
 namespace Medboubazine\FacebookPixel\Elements\Events;
 
-use Medboubazine\FacebookPixel\Core\Abstracts\ElementsAbstact;
+use Medboubazine\FacebookPixel\Core\Abstracts\ElementsAbstract;
 use Medboubazine\FacebookPixel\Core\Interfaces\ElementsInterface;
 
-final class UserElement extends ElementsAbstact implements ElementsInterface
+final class UserElement extends ElementsAbstract implements ElementsInterface
 {
     /**
      * Constructor

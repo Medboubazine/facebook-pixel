@@ -8,11 +8,11 @@ use FacebookAds\Object\ServerSide\EventRequest;
 use FacebookAds\Object\ServerSide\UserData;
 use FacebookAds\Object\ServerSide\Event;
 use FacebookAds\Api;
-use Medboubazine\FacebookPixel\Elements\EventResponseElement;
-use Medboubazine\FacebookPixel\Elements\Events\ProductElement;
+use Medboubazine\FacebookPixel\Core\Abstracts\EventAbstract;
+use Medboubazine\FacebookPixel\Core\Interfaces\EventsInterface;
 use Medboubazine\FacebookPixel\Elements\Events\UserElement;
 
-final class PageViewEvent
+final class PageViewEvent extends EventAbstract implements EventsInterface
 {
     /**
      * Constructor
@@ -24,13 +24,13 @@ final class PageViewEvent
         Api::init(null, null, $credentials->getAccessToken());
     }
     /**
-     * Push event
+     * Prepare event to push
      *
      * @param UserElement $user
-     * @param ProductElement $product
-     * @return void
+     * @param string $url
+     * @return EventRequest
      */
-    public function push(UserElement $user, string $url): EventResponseElement
+    public function handle(UserElement $user, string $url): self
     {
         /**
          * =========================
@@ -59,9 +59,8 @@ final class PageViewEvent
                 ->setActionSource(ActionSource::WEBSITE)
         ];
 
-        $request = (new EventRequest($this->credentials->getPixelId()))
-            ->setEvents($events);
+        $this->event = (new EventRequest($this->credentials->getPixelId()))->setEvents($events);
 
-        return new EventResponseElement($request->execute());
+        return $this;
     }
 }

@@ -15,20 +15,20 @@ $pixel = new FacebookPixel(new EventCredentialsElement($pixel_id, $access_token)
 ///
 /// PageView Event
 ///
-$event = $pixel->page_view_event();
 
 $user = new UserElement("IP", "UserAgent");
 
-$response = $event->push($user, "URL_HERE");
+$event = $pixel->page_view_event()->handle($user, "URL_HERE");
+
+$response = $event->push();
 ///
 /// Purchase Event
 ///
-$event = $pixel->purchase_event();
-
 $user = new UserElement("IP", "UserAgent");
 $product = new ProductElement("21", 1, "20.34", "usd", "URL_HERE");
 
-$response = $event->push($user, $product);
+$event = $pixel->purchase_event()->handle($user, $product);
 
 
+$response = $event->push();
 ```

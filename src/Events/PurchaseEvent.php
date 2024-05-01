@@ -11,11 +11,12 @@ use FacebookAds\Object\ServerSide\UserData;
 use FacebookAds\Object\ServerSide\Content;
 use FacebookAds\Object\ServerSide\Event;
 use FacebookAds\Api;
-use Medboubazine\FacebookPixel\Elements\EventResponseElement;
+use Medboubazine\FacebookPixel\Core\Abstracts\EventAbstract;
+use Medboubazine\FacebookPixel\Core\Interfaces\EventsInterface;
 use Medboubazine\FacebookPixel\Elements\Events\ProductElement;
 use Medboubazine\FacebookPixel\Elements\Events\UserElement;
 
-final class PurchaseEvent
+final class PurchaseEvent extends EventAbstract implements EventsInterface
 {
     /**
      * Constructor
@@ -27,13 +28,13 @@ final class PurchaseEvent
         Api::init(null, null, $credentials->getAccessToken());
     }
     /**
-     * Push event
+     * Prepare event
      *
      * @param UserElement $user
      * @param ProductElement $product
-     * @return void
+     * @return EventRequest
      */
-    public function push(UserElement $user, ProductElement $product): EventResponseElement
+    public function handle(UserElement $user, ProductElement $product): self
     {
         /**
          * =========================
@@ -75,9 +76,8 @@ final class PurchaseEvent
             ->setCustomData($custom_data)
             ->setActionSource(ActionSource::WEBSITE)];
 
-        $request = (new EventRequest($this->credentials->getPixelId()))
-            ->setEvents($events);
+        $this->event = (new EventRequest($this->credentials->getPixelId()))->setEvents($events);
 
-        return new EventResponseElement($request->execute());
+        return $this;
     }
 }

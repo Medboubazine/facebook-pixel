@@ -4,7 +4,7 @@ namespace Medboubazine\FacebookPixel\Core\Abstracts;
 
 use Medboubazine\FacebookPixel\Core\Helpers\Str;
 
-abstract class ElementsAbstact
+abstract class ElementsAbstract
 {
     /**
      * Attributes

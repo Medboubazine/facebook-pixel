@@ -3,10 +3,10 @@
 namespace Medboubazine\FacebookPixel\Elements;
 
 use FacebookAds\Object\ServerSide\EventResponse;
-use Medboubazine\FacebookPixel\Core\Abstracts\ElementsAbstact;
+use Medboubazine\FacebookPixel\Core\Abstracts\ElementsAbstract;
 use Medboubazine\FacebookPixel\Core\Interfaces\ElementsInterface;
 
-final class EventResponseElement extends ElementsAbstact implements ElementsInterface
+final class EventResponseElement extends ElementsAbstract implements ElementsInterface
 {
     /**
      * Constructor
